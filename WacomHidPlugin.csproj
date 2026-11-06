@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>WacomHidPlugin</AssemblyName>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Folder with OpenTabletDriver.Plugin.dll of the installed OpenTabletDriver; override with -p:OtdDir=... -->
+    <OtdDir Condition="'$(OtdDir)' == ''">/Applications/OpenTabletDriver.app/Contents/MacOS</OtdDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Reference the installed OpenTabletDriver, so the plugin matches its exact API -->
+    <Reference Include="OpenTabletDriver.Plugin">
+      <HintPath>$(OtdDir)/OpenTabletDriver.Plugin.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
