@@ -1,14 +1,13 @@
 # OpenTabletDriver plugin for the Wacom `056A:5229` pen digitizer
 
 [OpenTabletDriver](https://opentabletdriver.net) report parser and configuration for the built-in
-"Pen and multitouch sensor" of Lenovo ThinkPad X1 Yoga (Gen 5; probably other generations too).
-The device is a standard USB HID digitizer (Wacom, VID `056A`, PID `5229`), so OpenTabletDriver
+"Pen and multitouch sensor" of Lenovo ThinkPad X1 Yoga Gen 5 (probably other generations too).
+The device is a standard USB HID digitizer (Wacom, VID `056A`, PID `5229`), and OpenTabletDriver
 has no configuration for it.
 
-Developed and tested on a Hackintosh (macOS Ventura 13.7.8) with OpenTabletDriver 0.6.8 (as shown in
-its About window). See [thinkpad-x1-yoga-5-hack](https://github.com/AlexFullmoon/thinkpad-x1-yoga-5-hack)
-for the whole setup (patched VoodooI2CHID, which is needed to avoid duplicate pen input).
-Not tested on other systems.
+Developed and tested on a Hackintosh (macOS Ventura 13.7.8) with OpenTabletDriver 0.6.8 . See [thinkpad-x1-yoga-5-hack](https://github.com/AlexFullmoon/thinkpad-x1-yoga-5-hack)
+for the whole setup (including patched VoodooI2CHID, which is needed to avoid duplicate pen input).
+Not tested and probably not needed on other systems.
 
 What works: position, pressure (0–4095), two pen buttons, eraser, tilt (with a pen that reports it),
 tool type and serial number.
@@ -77,11 +76,11 @@ so it is only visible in Tablet Debugger.
 - **Do not** add the generic Wacom `FeatureInitReport` (`AgI=`, i.e. feature report 2 = 2) that most Wacom
   configurations use. It switches the digitizer to a legacy mode with a different product ID (`056A:0094`) and no
   usable HID reports: OpenTabletDriver does not detect the tablet, and the pen stops working in macOS too.
-  A reboot should reset it.
+  A reboot or shutdown should reset it.
 - Byte 15 jumps between 0 and 128 (bundled pen) or 255 (other pen), independently of the pen state. Its meaning
   is not confirmed (battery level? hover distance?). The parser ignores it, there is a commented-out
   logging snippet in the source.
-- The bundled pen does not report tilt. Another pen works, tilt up to ±65° was seen.
+- The bundled pen does not report tilt. Another pen worked, tilt up to ±65° was seen.
 - The configuration size (309.31 × 173.99 mm) is calculated from the descriptor, not measured.
 
 ## License
