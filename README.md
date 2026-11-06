@@ -85,4 +85,4 @@ so it is only visible in Tablet Debugger.
 
 ## License
 
-Not chosen yet.
+[MIT](LICENSE)
